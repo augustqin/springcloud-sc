@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.activityplatform.dao.ActivityorderDao">
+  <resultMap id="BaseResultMap" type="com.example.activityplatform.pojo.entity.Activityorder">
+    <id column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="activityid" jdbcType="INTEGER" property="activityid" />
+    <result column="allCost" jdbcType="INTEGER" property="allcost" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="payTime" jdbcType="TIMESTAMP" property="paytime" />
+    <result column="payType" jdbcType="VARCHAR" property="paytype" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="receiveAddress" jdbcType="VARCHAR" property="receiveaddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    orderId, userId, activityid, allCost, createTime, payTime, payType, `status`, receiveAddress
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from activityorder
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectActidByUserid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from activityorder
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from activityorder
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="orderId" keyProperty="orderid" parameterType="com.example.activityplatform.pojo.entity.Activityorder" useGeneratedKeys="true">
+    insert into activityorder (userId, activityid, allCost, 
+      createTime, payTime, payType, 
+      `status`, receiveAddress)
+    values (#{userid,jdbcType=INTEGER}, #{activityid,jdbcType=INTEGER}, #{allcost,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{paytime,jdbcType=TIMESTAMP}, #{paytype,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{receiveaddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="orderId" keyProperty="orderid" parameterType="com.example.activityplatform.pojo.entity.Activityorder" useGeneratedKeys="true">
+    insert into activityorder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="activityid != null">
+        activityid,
+      </if>
+      <if test="allcost != null">
+        allCost,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="paytime != null">
+        payTime,
+      </if>
+      <if test="paytype != null">
+        payType,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="receiveaddress != null">
+        receiveAddress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="activityid != null">
+        #{activityid,jdbcType=INTEGER},
+      </if>
+      <if test="allcost != null">
+        #{allcost,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paytime != null">
+        #{paytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paytype != null">
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveaddress != null">
+        #{receiveaddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.activityplatform.pojo.entity.Activityorder">
+    update activityorder
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="activityid != null">
+        activityid = #{activityid,jdbcType=INTEGER},
+      </if>
+      <if test="allcost != null">
+        allCost = #{allcost,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paytime != null">
+        payTime = #{paytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paytype != null">
+        payType = #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveaddress != null">
+        receiveAddress = #{receiveaddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.activityplatform.pojo.entity.Activityorder">
+    update activityorder
+    set userId = #{userid,jdbcType=INTEGER},
+      activityid = #{activityid,jdbcType=INTEGER},
+      allCost = #{allcost,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      payTime = #{paytime,jdbcType=TIMESTAMP},
+      payType = #{paytype,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR},
+      receiveAddress = #{receiveaddress,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>

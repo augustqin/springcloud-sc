@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>login</title>
+  <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+  <link rel="stylesheet" type="text/css" href="../../../static/layui/css/layui.css">
+  <script type="text/javascript" src="../../../static/layui/layui.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+</head>
+<body>
+
+  <div class="site-nav-bg">
+    <div class="site-nav w1200">
+      <p class="sn-back-home" >
+        <i class="layui-icon layui-icon-home"></i>
+        <a  th:href="@{/}">首页</a>
+      </p>
+      <div class="sn-quick-menu">
+        <div class="login"><a href="loginPage.html">登录</a></div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="header">
+    <div class="headerLayout w1200">
+      <div class="headerCon">
+        <h1 class="mallLogo">
+          <a class="" th:href="@{/}" style="font-size:30px;color:#cfb2f6; ">
+            活动发行及管理平台</a>
+        </h1>
+        <div class="mallSearch">
+          <form action="" class="layui-form" novalidate>
+            <input type="text" name="title" required  lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入查询的活动">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">
+                <i class="layui-icon layui-icon-search"></i>
+            </button>
+            <input type="hidden" name="" value="">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="content content-nav-base  login-content">
+    <div class="main-nav">
+      <div class="inner-cont0">
+        <div class="inner-cont1 w1200">
+          <div class="inner-cont2">
+            <a href="classification.html" class="active">所有活动</a>
+            <a href="buytoday.html">分类</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="login-bg">
+      <div class="login-cont w1200">
+        <div class="form-box">
+          <form class="layui-form"  th:action="@{login}" method="post">
+            <legend style="padding:50px 0">手机号登录</legend>
+            <div class="layui-form-item">
+              <div class="layui-inline iphone">
+                <div class="layui-input-inline">
+                  <i class="layui-icon layui-icon-cellphone iphone-icon"></i>
+                  <input type="tel" name="phone" id="phone"  placeholder="请输入手机号" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-inline iphone">
+                <div class="layui-input-inline">
+                  <i class="layui-icon layui-icon-cellphone iphone-icon"></i>
+                  <input type="password" id="password"  name="password"  placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+            </div>
+            <div>
+              <table class="table " frame=void >
+                <tbody>
+                <tr>
+                  <td>
+                    <input id="RadioButtonLList1_0" type="radio" name="status" title="用户" value="用户" tabindex="4" checked="">
+                  </td>
+                  <td>
+                    <input id="RadioButtonLList1_1" type="radio" name="status" title="管理员" value="管理员" tabindex="4">
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="form-group" th:text="${errorMsg}" style="color: red"></div>
+            <div class="layui-form-item login-btn">
+            <div class="layui-input-block"  >
+              <button type="submit" class="layui-btn" >登录</button>
+            </div>
+            </div>
+            <div class="login-blocks login-links" style="text-align:right">
+              <a  style=" color:gray;">忘记密码</a>
+              <a  style=" color:gray;" th:href="@{RegisterPage}">免费注册</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+   layui.config({
+      base: 'js/util' //你存放新模块的目录，注意，不是layui的模块目录
+    }).use(['jquery','form'],function(){
+          var $ = layui.$,form = layui.form;
+
+
+        $("#find").click(function() {
+            if(!/^1\d{10}$/.test($("#phone").val())){
+              layer.msg("请输入正确的手机号");
+              return false;
+            }
+            var obj=this;
+            $.ajax({
+                type:"get",
+                url:"json/login.json",
+                dataType:"json",//返回的
+                success:function(data) {
+                    
+                    if(data.result){
+                        $("#find").addClass(" layui-btn-disabled");
+                        $('#find').attr('disabled',"true");
+                        settime(obj);
+                        $("#msg").text(data.msg);
+                    }else{
+                        layer.msg(data.msg);
+                    }
+                },
+                error:function(msg) {
+                    console.log(msg);
+                }
+            }); 
+        })
+        var countdown=60; 
+        function settime(obj) { 
+        if (countdown == 0) { 
+            obj.removeAttribute("disabled"); 
+            obj.classList.remove("layui-btn-disabled")
+            obj.value="获取验证码"; 
+            countdown = 60; 
+            return;
+        } else { 
+            
+            obj.value="重新发送(" + countdown + ")"; 
+            countdown--; 
+        } 
+        setTimeout(function() { 
+            settime(obj) }
+            ,1000) 
+        }
+    })
+  </script>
+
+</body>
+</html>

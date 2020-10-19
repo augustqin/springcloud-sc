@@ -1,0 +1,251 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html,body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.58;
+    background-color: #ccccff;
+    height: 100%;
+    z-index:0;
+}
+
+.hidden {
+    display: none;
+}
+ul{
+	overflow-y:scroll;
+}
+
+/*#loginPage{*/
+/*	position:relative;*/
+/*	margin:10% 30% 10% 30%;*/
+/*	border-radius:10%;*/
+/*    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);*/
+/*    background: #fff;*/
+/*    opacity: 90%;*/
+/*    padding:35px 55px 35px; */
+/*}*/
+
+.form-control{
+	width: 100%;
+    height: 38px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+	border: 1px solid #c8c8c8;
+}
+button.login-submit{
+	position:relative;
+	font-size:25px;
+	margin-top: 20px;
+	margin-bottom:20px;
+	margin-left: 20%;
+	margin-right:20%;
+	height: 45px;  width: 60%;
+	background-color: #73AD21;
+    color: #fff;
+    border-radius:8px;
+    border: 0px;
+    box-shadow: 0 9px #999;
+}
+#chatPage{
+	height:80%;  width:80%;
+	margin: 0 auto;
+	border:0;
+	padding: 5px 5px 5px 5px;
+	background-color: #ccccff;
+}
+
+#myChatListBox{
+	float:left;
+	height:100%;
+	width:15%;
+	padding: 10px 10px 10px 10px;
+	background-color: #99cc66;
+	text-align:center;
+}
+
+#text1{
+	width:100%;
+	margin:0px;
+	background-color:#fffacd;
+	padding-top:10px; padding-bottom:10px;
+}
+
+#roomMemberBox{
+	float:left;
+	position:relative;
+	height:100%;
+	width:20%;
+	background-color:#f5f5dc;
+	text-align:center;
+	padding: 10px 10px 10px 10px;
+}
+ul#roomMember{
+	width:100%;   height: 90%;
+	overflow-x:scroll;
+}
+ul#myChatList li{
+	font-family:Lucida Console;
+	zoom: 200%;
+}
+#text2{
+	width:100%;
+	margin:0px;
+	background-color:#deb887;
+	padding-top:10px; padding-bottom:10px;
+}
+#chatBox{
+	float:right;
+	position:relative;
+	width:80%;
+	height:80%;
+	background-color:#ffffff;
+	margin-top:0px;
+	border: 2px solid d2648c;
+	padding:5px 5px 5px 5px;
+	box-shadow: inset 0px 0px 30px 5px #888888;
+}
+#text3{
+	padding: 5px 5px 5px 5px;
+	margin-top:0px; margin-bottom:0px;
+	text-align:center;
+	background-color:#f5f5f5;
+}
+ul#messageArea{
+	height:92%;
+	position:relative;
+	margin-top:0px;
+}
+#sendBox{
+	position:relative;
+	float:right;
+	height:19%;  width:80%;
+	background-color:#d8bfd8;
+	margin: 8px 0px 0px 0px;
+}
+#textInput{
+	border:3px solid #bdb76b;
+	position:relative;
+	height:72%;  
+	width:100%;
+}
+#textSubmit{
+	float: right;
+	zoom:120%;
+	padding: 3px 15px 3px 15px;
+	color:#ffffff;
+	background-color: #1e90ff;
+	border: #ffffff;
+    box-shadow: 0 0 5px #1e90ff; 
+    cursor: pointer;
+    margin-right:5px;
+}
+#textSubmit:hover{
+	background-color:#208ff2;
+}
+#pictureButton{
+	color:#ffffff;
+	zoom:110%;
+	background-color: #808080;
+	border:#dcdcdc;
+	padding: 3px 15px 3px 15px;
+	margin-left:5px;
+}
+#pictureButton:hover{
+	box-shadow: 0 0 5px #1e90ff; 
+}
+
+#messageArea li{
+	list-style:none;
+	clear:both;
+	padding-top:30px; padding-bottom:30px;
+}
+#messageArea li.pp{
+	text-align:center;
+	color:grey;
+	font-family: "Times New Roman";
+}
+#messageArea li span.image{
+	background-color:yellow;
+	width:30px;  height:30px;
+	font-size:18px;
+	overflow:hidden;
+	border-radius:50%;
+    text-align:center;
+	zoom:200%;
+	margin-right:5px; margin-left:5px;
+	}
+	
+#messageArea li span.head{
+	width:90%;
+	color:grey;
+	padding:5px 5px 5px 5px;
+	}
+#messageArea li span.content{	
+	margin-top:5px;
+	padding: 10px 10px 10px 10px;
+	max-width:50%;
+	border-radius: 20px;
+	word-wrap: break-word;
+	}
+#messageArea li.other span.image{
+	float:left;
+}
+#messageArea li.other span.head{
+	text-align:left;
+	float:left;
+}
+#messageArea li.other span.content{
+	float:left;
+	background-color:#e6e6fa;
+}
+
+#messageArea li.my span.image{
+	float:right;
+}
+#messageArea li.my span.head{
+	text-align:right;
+	float:right;
+}
+#messageArea li.my span.content{
+	float:right;
+	background-color:#99cc66;
+}
+
+#messageArea li.my button{
+                float:right;
+}
+
+#messageArea li img{
+	position: relative;
+	width:expression(this.width > 50%? 50% : auto);
+}
+#messageArea li.my img{
+	float:right;
+}
+#messageArea li.other img{
+	float:left; 
+}
+
+.inviteinfo{
+	position:absolute;
+	font-size:200%;
+	margin:10% 30% 10% 30%;
+	border-radius:10%;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    background: #fff;
+    opacity: 60%;
+    padding:35px 55px 35px; 
+}

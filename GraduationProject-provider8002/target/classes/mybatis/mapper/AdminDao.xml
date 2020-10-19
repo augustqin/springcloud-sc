@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.activityplatform.dao.AdminDao">
+  <resultMap id="BaseResultMap" type="com.example.activityplatform.pojo.entity.Admin">
+    <id column="idadmin" jdbcType="INTEGER" property="idadmin" />
+    <result column="adminName" jdbcType="VARCHAR" property="adminname" />
+    <result column="adminPassword" jdbcType="VARCHAR" property="adminpassword" />
+    <result column="publishedActivityId" jdbcType="INTEGER" property="publishedactivityid" />
+    <result column="adminPhone" jdbcType="INTEGER" property="adminphone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    idadmin, adminName, adminPassword, publishedActivityId, adminPhone
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `admin`
+    where idadmin = #{idadmin,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `admin`
+    where adminPhone = #{adminPhone,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `admin`
+    where idadmin = #{idadmin,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="idadmin" keyProperty="idadmin" parameterType="com.example.activityplatform.pojo.entity.Admin" useGeneratedKeys="true">
+    insert into `admin` (adminName, adminPassword, publishedActivityId, 
+      adminPhone)
+    values (#{adminname,jdbcType=VARCHAR}, #{adminpassword,jdbcType=VARCHAR}, #{publishedactivityid,jdbcType=INTEGER}, 
+      #{adminphone,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="idadmin" keyProperty="idadmin" parameterType="com.example.activityplatform.pojo.entity.Admin" useGeneratedKeys="true">
+    insert into `admin`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminname != null">
+        adminName,
+      </if>
+      <if test="adminpassword != null">
+        adminPassword,
+      </if>
+      <if test="publishedactivityid != null">
+        publishedActivityId,
+      </if>
+      <if test="adminphone != null">
+        adminPhone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adminname != null">
+        #{adminname,jdbcType=VARCHAR},
+      </if>
+      <if test="adminpassword != null">
+        #{adminpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="publishedactivityid != null">
+        #{publishedactivityid,jdbcType=INTEGER},
+      </if>
+      <if test="adminphone != null">
+        #{adminphone,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.activityplatform.pojo.entity.Admin">
+    update `admin`
+    <set>
+      <if test="adminname != null">
+        adminName = #{adminname,jdbcType=VARCHAR},
+      </if>
+      <if test="adminpassword != null">
+        adminPassword = #{adminpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="publishedactivityid != null">
+        publishedActivityId = #{publishedactivityid,jdbcType=INTEGER},
+      </if>
+      <if test="adminphone != null">
+        adminPhone = #{adminphone,jdbcType=INTEGER},
+      </if>
+    </set>
+    where idadmin = #{idadmin,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.activityplatform.pojo.entity.Admin">
+    update `admin`
+    set adminName = #{adminname,jdbcType=VARCHAR},
+      adminPassword = #{adminpassword,jdbcType=VARCHAR},
+      publishedActivityId = #{publishedactivityid,jdbcType=INTEGER},
+      adminPhone = #{adminphone,jdbcType=INTEGER}
+    where idadmin = #{idadmin,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>home</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+  <script type="text/javascript" src="layui/layui.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+</head>
+<body id="list-cont">
+  <div class="site-nav-bg">
+    <div class="site-nav w1200">
+      <p class="sn-back-home">
+        <i class="layui-icon layui-icon-home"></i>
+        <a href="#">首页</a>
+      </p>
+      <div class="sn-quick-menu">
+        <div class="login"><a th:href="@{loginPage}" >登录</a></div>
+        <div class="login"><a th:href="@{RegisterPage}" >注册</a></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="header">
+    <div class="headerLayout w1200">
+      <div class="headerCon">
+        <h1 class="mallLogo">
+          <a class="" href="index.html" style="font-size:30px;color:#cfb2f6; ">
+            活动发行及管理平台</a>
+        </h1>
+        <div class="mallSearch">
+          <form action="" class="layui-form" novalidate>
+            <input type="text" name="title" required  lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入想要查询的活动">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">
+                <i class="layui-icon layui-icon-search"></i>
+            </button>
+            <input type="hidden" name="" value="">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="content">
+    <div class="main-nav">
+      <div class="inner-cont0">
+        <div class="inner-cont1 w1200">
+          <div class="inner-cont2">
+            <a href="index.html" class="active">所有活动</a>
+            <a th:href="@{classification}">分类</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="category-con">
+      <div class="category-inner-con w1200">
+        <div class="category-type">
+          <h3>全部分类</h3>
+        </div>
+
+        <div class="category-tab-content">
+          <div class="nav-con">
+            <ul class="normal-nav layui-clear">
+              <li class="nav-item">
+                <div class="title" th:href="@{/音乐会}">音乐会</div>
+                <p><a href="#">钢琴演奏会</a><a href="#">音乐演奏会</a>
+                  <i class="layui-icon layui-icon-right"></i>
+              </li>
+              <li class="nav-item">
+                <div class="title" th:href="@{/文体活动}">文体活动</div>
+                <p><a href="#">青春战疫活动</a><a href="#">班会</a>
+                <i class="layui-icon layui-icon-right"></i>
+              </li>
+              <li class="nav-item">
+                <div class="title" th:href="@{/实践实习}">实践实习</div>
+                <p><a href="#">招聘会</a><a href="#">公司讲座</a></p>
+                <i class="layui-icon layui-icon-right"></i>
+              </li>
+              <li class="nav-item ">
+                <div class="title" th:href="@{/创新创业}">创新创业</div>
+                <p><a href="#">宣讲会</a><a href="#">创新创业比赛动员会议</a></p>
+                <i class="layui-icon layui-icon-right"></i>
+              </li>
+              <li class="nav-item">
+                <div class="title" th:href="@{/志愿公益}">志愿公益</div>
+                <p><a href="#">医院志愿活动</a><a href="#">关爱养老院活动</a></p>
+                <i class="layui-icon layui-icon-right"></i>
+              </li>
+              <li class="nav-item">
+                <div class="title" th:href="@{/技能特长}">技能特长</div>
+                <p><a href="#">摄影培训</a><a href="#">音乐美术培训</a></p>
+                <i class="layui-icon layui-icon-right"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="category-banner">
+
+        <div style=" width: 700px;height: 400px; margin: 0 auto;">
+          <img src="img/战疫青春.jpg"   >
+        </div>
+      </div>
+    </div>
+
+<!--分类-->
+
+    <div class="product-list-box" id="product-list-box1">
+      <div class="product-list-cont w1200" >
+        <h4>全部分类</h4>
+        <div class="product-item-box layui-clear" >
+          <div class="list-item1">
+            <a href="javascript:;"><img src=" img/s_img1.png" ></a>
+            <div class="title" >音乐会</div>
+          </div>
+          <div class="list-item1">
+            <a href="javascript:;"><img src=" img/s_img2.jpg" ></a>
+            <div class="title" >文体活动</div>
+          </div>
+          <div class="list-item1">
+            <a href="javascript:;"><img src=" img/s_img3.jpg"></a>
+            <div class="title" >实践实习</div>
+          </div>
+          <div class="list-item1">
+            <a href="javascript:;"><img src=" img/s_img4.jpg"></a>
+            <div class="title" >创新创业</div>
+          </div>
+          <div class="list-item1">
+            <a href="javascript:;"><img src=" img/s_img5.jpg"></a>
+            <div class="title" >志愿公益</div>
+          </div>
+          <div class="list-item1">
+            <a href="javascript:;"><img src=" img/s_img6.jpg"></a>
+            <div class="title" >技能特长</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--分类-->
+
+
+    <!--    音乐会-->
+    <div class="product-list-box" id="product-list-box0">
+      <div class="product-list-cont w1200" >
+        <h4>音乐会</h4>
+        <div class="product-item-box layui-clear" >
+          <div class="list-item" th:each="iY:${indexY}">
+            <a href="javascript:;" th:href="@{activityDetail(activityid=${iY.activityid})}"><img th:src="${iY.activityphoto}" style="width: 160px;height: 160px"></a>
+            <p th:text="${iY.activityname}"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--    文体活动-->
+    <div class="product-list-box" id="product-list-box">
+      <div class="product-list-cont w1200" >
+        <h4>文体活动</h4>
+        <div class="product-item-box layui-clear" >
+          <div class="list-item" th:each="iW:${indexW}">
+            <a href="javascript:;" th:href="@{activityDetail(activityid=${iW.activityid})}"><img th:src="${iW.activityphoto}" style="width: 160px;height: 160px"></a>
+            <p th:text="${iW.activityname}"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--    实践实习-->
+    <div class="product-list-box" id="product-list-box2">
+      <div class="product-list-cont w1200" >
+        <h4>实践实习</h4>
+        <div class="product-item-box layui-clear" >
+          <div class="list-item" th:each="iS:${indexS}">
+            <a href="javascript:;" th:href="@{activityDetail(activityid=${iS.activityid})}"><img th:src="${iS.activityphoto}" style="width: 160px;height: 160px"></a>
+            <p th:text="${iS.activityname}"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--    创新创业-->
+    <div class="product-list-box" id="product-list-box3">
+      <div class="product-list-cont w1200" >
+        <h4>创新创业</h4>
+        <div class="product-item-box layui-clear" >
+          <div class="list-item" th:each="iC:${indexC}" >
+            <a href="javascript:;" th:href="@{activityDetail(activityid=${iC.activityid})}"><img th:src="${iC.activityphoto}" style="width: 160px;height: 160px"></a>
+            <p th:text="${iC.activityname}"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--    志愿公益-->
+    <div class="product-list-box" id="product-list-box4">
+      <div class="product-list-cont w1200" >
+        <h4>志愿公益</h4>
+        <div class="product-item-box layui-clear" >
+          <div class="list-item" th:each="iZ:${indexZ}">
+            <a href="javascript:;" th:href="@{activityDetail(activityid=${iZ.activityid})}"><img th:src="${iZ.activityphoto}" style="width: 160px;height: 160px"></a>
+            <p th:text="${iZ.activityname}"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--    技能特长-->
+    <div class="product-list-box" id="product-list-box5">
+      <div class="product-list-cont w1200" >
+        <h4>技能特长</h4>
+        <div class="product-item-box layui-clear" >
+          <div class="list-item" th:each="iJ:${indexJ}">
+            <a href="javascript:;" th:href="@{activityDetail(activityid=${iJ.activityid})}"><img th:src="${iJ.activityphoto}" style="width: 160px;height: 160px"></a>
+            <p th:text="${iJ.activityname}"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  <script type="text/javascript">
+
+layui.config({
+    base: ' js/util/' //你存放新模块的目录，注意，不是layui的模块目录
+  }).use(['mm','carousel'],function(){
+      var carousel = layui.carousel,
+     mm = layui.mm;
+     var option = {
+        elem: '#test1'
+        ,width: '100%' //设置容器宽度
+        ,arrow: 'always'
+        ,height:'298' 
+        ,indicator:'none'
+      }
+      carousel.render(option);
+});
+  </script>
+  </div>
+</body>
+</html>

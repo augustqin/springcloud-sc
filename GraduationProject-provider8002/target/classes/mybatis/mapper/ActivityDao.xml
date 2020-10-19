@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.activityplatform.dao.ActivityDao">
+  <resultMap id="BaseResultMap" type="com.example.activityplatform.pojo.entity.Activity">
+    <id column="ActivityId" jdbcType="INTEGER" property="activityid" />
+    <result column="ActivityClassification" jdbcType="VARCHAR" property="activityclassification" />
+    <result column="ActivityName" jdbcType="VARCHAR" property="activityname" />
+    <result column="ApplicationTime" jdbcType="TIMESTAMP" property="applicationtime" />
+    <result column="ActivityTime" jdbcType="TIMESTAMP" property="activitytime" />
+    <result column="ActivityPrice" jdbcType="INTEGER" property="activityprice" />
+    <result column="ActivityDescription" jdbcType="VARCHAR" property="activitydescription" />
+    <result column="Activityphoto" jdbcType="VARCHAR" property="activityphoto" />
+    <result column="ActivityQRcode" jdbcType="VARCHAR" property="activityqrcode" />
+    <result column="ActivityLimit" jdbcType="INTEGER" property="activitylimit" />
+    <result column="ActivityPlace" jdbcType="VARCHAR" property="activityplace" />
+    <result column="ActivityPublishId" jdbcType="INTEGER" property="activitypublishid" />
+    <result column="hot" jdbcType="INTEGER" property="hot" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ActivityId, ActivityClassification, ActivityName, ApplicationTime, ActivityTime, 
+    ActivityPrice, ActivityDescription, Activityphoto, ActivityQRcode, ActivityLimit, 
+    ActivityPlace, ActivityPublishId, hot
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from activity
+    where ActivityId = #{activityid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByactivitypublishid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from activity
+    where ActivityPublishId = #{id,jdbcType=INTEGER}
+  </select>
+
+<!--由hot查询热点活动显示在首页-->
+  <select id="selectAByhot" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from activity
+    where ActivityClassification = #{activityclassification,jdbcType=VARCHAR} and hot = "1"
+  </select>
+  <!--由hot查询热点活动显示在首页   end-->
+<!--  由分类取出排好序（按id最大排序）的活动list-->
+  <select id="selectAByBiggestId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from activity
+    where  hot = "1" order by ActivityId desc
+  </select>
+<!--  end-->
+  <select id="selectCByBiggestId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from activity
+    where ActivityClassification = #{clification,jdbcType=VARCHAR} and hot = "1" order by ActivityId desc
+  </select>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from activity
+    where ActivityName = #{acname,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from activity
+    where ActivityId = #{activityid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ActivityId" keyProperty="activityid" parameterType="com.example.activityplatform.pojo.entity.Activity" useGeneratedKeys="true">
+    insert into activity (ActivityClassification, ActivityName, 
+      ApplicationTime, ActivityTime, ActivityPrice, 
+      ActivityDescription, Activityphoto, ActivityQRcode, 
+      ActivityLimit, ActivityPlace, ActivityPublishId, 
+      hot)
+    values (#{activityclassification,jdbcType=VARCHAR}, #{activityname,jdbcType=VARCHAR}, 
+      #{applicationtime,jdbcType=TIMESTAMP}, #{activitytime,jdbcType=TIMESTAMP}, #{activityprice,jdbcType=INTEGER}, 
+      #{activitydescription,jdbcType=VARCHAR}, #{activityphoto,jdbcType=VARCHAR}, #{activityqrcode,jdbcType=VARCHAR}, 
+      #{activitylimit,jdbcType=INTEGER}, #{activityplace,jdbcType=VARCHAR}, #{activitypublishid,jdbcType=INTEGER}, 
+      #{hot,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="ActivityId" keyProperty="activityid" parameterType="com.example.activityplatform.pojo.entity.Activity" useGeneratedKeys="true">
+    insert into activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activityclassification != null">
+        ActivityClassification,
+      </if>
+      <if test="activityname != null">
+        ActivityName,
+      </if>
+      <if test="applicationtime != null">
+        ApplicationTime,
+      </if>
+      <if test="activitytime != null">
+        ActivityTime,
+      </if>
+      <if test="activityprice != null">
+        ActivityPrice,
+      </if>
+      <if test="activitydescription != null">
+        ActivityDescription,
+      </if>
+      <if test="activityphoto != null">
+        Activityphoto,
+      </if>
+      <if test="activityqrcode != null">
+        ActivityQRcode,
+      </if>
+      <if test="activitylimit != null">
+        ActivityLimit,
+      </if>
+      <if test="activityplace != null">
+        ActivityPlace,
+      </if>
+      <if test="activitypublishid != null">
+        ActivityPublishId,
+      </if>
+      <if test="hot != null">
+        hot,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activityclassification != null">
+        #{activityclassification,jdbcType=VARCHAR},
+      </if>
+      <if test="activityname != null">
+        #{activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationtime != null">
+        #{applicationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activitytime != null">
+        #{activitytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activityprice != null">
+        #{activityprice,jdbcType=INTEGER},
+      </if>
+      <if test="activitydescription != null">
+        #{activitydescription,jdbcType=VARCHAR},
+      </if>
+      <if test="activityphoto != null">
+        #{activityphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="activityqrcode != null">
+        #{activityqrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="activitylimit != null">
+        #{activitylimit,jdbcType=INTEGER},
+      </if>
+      <if test="activityplace != null">
+        #{activityplace,jdbcType=VARCHAR},
+      </if>
+      <if test="activitypublishid != null">
+        #{activitypublishid,jdbcType=INTEGER},
+      </if>
+      <if test="hot != null">
+        #{hot,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.activityplatform.pojo.entity.Activity">
+    update activity
+    <set>
+      <if test="activityclassification != null">
+        ActivityClassification = #{activityclassification,jdbcType=VARCHAR},
+      </if>
+      <if test="activityname != null">
+        ActivityName = #{activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationtime != null">
+        ApplicationTime = #{applicationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activitytime != null">
+        ActivityTime = #{activitytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activityprice != null">
+        ActivityPrice = #{activityprice,jdbcType=INTEGER},
+      </if>
+      <if test="activitydescription != null">
+        ActivityDescription = #{activitydescription,jdbcType=VARCHAR},
+      </if>
+      <if test="activityphoto != null">
+        Activityphoto = #{activityphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="activityqrcode != null">
+        ActivityQRcode = #{activityqrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="activitylimit != null">
+        ActivityLimit = #{activitylimit,jdbcType=INTEGER},
+      </if>
+      <if test="activityplace != null">
+        ActivityPlace = #{activityplace,jdbcType=VARCHAR},
+      </if>
+      <if test="activitypublishid != null">
+        ActivityPublishId = #{activitypublishid,jdbcType=INTEGER},
+      </if>
+      <if test="hot != null">
+        hot = #{hot,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ActivityId = #{activityid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.activityplatform.pojo.entity.Activity">
+    update activity
+    set ActivityClassification = #{activityclassification,jdbcType=VARCHAR},
+      ActivityName = #{activityname,jdbcType=VARCHAR},
+      ApplicationTime = #{applicationtime,jdbcType=TIMESTAMP},
+      ActivityTime = #{activitytime,jdbcType=TIMESTAMP},
+      ActivityPrice = #{activityprice,jdbcType=INTEGER},
+      ActivityDescription = #{activitydescription,jdbcType=VARCHAR},
+      Activityphoto = #{activityphoto,jdbcType=VARCHAR},
+      ActivityQRcode = #{activityqrcode,jdbcType=VARCHAR},
+      ActivityLimit = #{activitylimit,jdbcType=INTEGER},
+      ActivityPlace = #{activityplace,jdbcType=VARCHAR},
+      ActivityPublishId = #{activitypublishid,jdbcType=INTEGER},
+      hot = #{hot,jdbcType=INTEGER}
+    where ActivityId = #{activityid,jdbcType=INTEGER}
+  </update>
+</mapper>

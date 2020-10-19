@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="plugins/js::js"></div>
+<script type="text/javascript" th:src="@{/lh/layer/layer.js}"></script>
+<body>
+
+<!--#fd0c2c到#fd2a47-->
+<div class="layui-row" style="position: absolute;left: 0;top: 0;bottom: 0;right: 0">
+    <div class="layui-col-xs12 layui-col-md6 layui-col-md-offset3 "
+         style="height: 100%;position: relative;">
+        <h1 style="text-align: center">确认订单</h1>
+
+        <form id="orderForm1" th:action="@{orderadd}" method="post">
+            <input name="iduser" type="hidden" th:value="${user.iduser}"/>
+            <input name="useradress" type="hidden" th:value="${user.useradress}"/>
+            <input name="activityprice" type="hidden" th:value="${orderact.activityprice}"/>
+            <input name="activityid" type="hidden" th:value="${orderact.activityid}"/>
+            <input type="hidden" name="isWx" id="isWx" value="false"/>
+            <input type="hidden" name="arrivalTime" id="arrivalTime"
+                   th:value="${#dates.format(#dates.createNow(),'HH:mm')}+'-'+${#dates.format(#dates.create(#dates.year(#dates.createNow()),#dates.month(#dates.createNow()),#dates.day(#dates.createNow()),#dates.hour(#dates.createNow()),#dates.minute(#dates.createNow())+40),'HH:mm')}"/>
+
+            <div style="background: rgb(245,245,245);padding: 10px;">
+                <div style="background: white;padding: 10px;border-radius: 5px">
+                    <div>
+                        <div style="display: flex;justify-content: space-between;align-items: center"
+                             id="selectAddress">
+                                <div style="display: flex;align-items: center">
+                                    <span style="background: #50d15a;color: white;padding: 1px 2px;border-radius:2px">家</span>
+                                    <h2 style="font-weight: bold" id="addressTxt"
+                                        th:text="${user.useradress}"></h2>
+                                </div>
+                                <div style="color: gray">
+                                    <span id="receiverTxt" th:text="${user.username}"></span>
+                                    <span id="receiverTxt" th:text="${user.userphone}"></span>
+                                </div>
+                            <div style="color: lightgray"><i
+                                    class="layui-icon layui-icon-right"
+                                    style="font-size: 13px;margin-left: 5px;margin-top: 2px"></i></div>
+                             </div>
+
+                        <div style="display: flex;justify-content: space-between;align-items: center">
+                            <h3 style="font-weight: bold">送达时间</h3>
+                            <div style="color: #1E9FFF">立即送达 <span>15:30</span>-<span>16:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: white;padding: 10px;border-radius: 5px;margin-top: 10px">
+                    <div>
+                        <hr>
+                        <div>
+                            <div style="display: flex;align-items: center" >
+                                <div>
+                                    <img th:src="${orderact.activityphoto}" style="width: 150px;height: 150px"
+                                        />
+                                </div>
+                                <div style="margin-left: 10px;flex-grow: 1">
+                                    <div th:text="${orderact.activityname}"></div>
+                                    <div th:text="${orderact.activitytime}"></div>
+                                    <div th:text="${orderact.activityplace}"></div>
+                                    <div style="display: flex;justify-content: space-between;padding: 10px 0;font-weight: bold">
+                                        <div>¥<span th:text="${orderact.activityprice}">29.8</span> x 1
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex;justify-content: space-between;padding: 10px 0">
+                                <div>运费优惠</div>
+                                <div style="color: lightgray">暂无优惠</div>
+                            </div>
+                            <div style="display: flex;justify-content: space-between;padding: 10px 0">
+                                <div>红包</div>
+                                <div style="color: lightgray">暂无红包</div>
+                            </div>
+                            <div style="padding-right: 10px">
+                                <div>备注</div>
+                                <textarea name="note" style="height: 40px;width: 100%;padding: 5px;resize: none"
+                                          placeholder="您有要求请填写"></textarea>
+                            </div>
+                            <hr>
+                            <div style="display: flex;align-items: center;justify-content: flex-end">
+                                <div style="display: flex;margin-left: 20px;align-items: center">实付金额<h2
+                                        style="color: orangered;font-weight: bold;margin-left: 10px"
+                                        th:text="${orderact.activityprice}">¥60.8</h2></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <button class="layui-btn layui-btn-danger" type="submit" id="commit"
+                    style="width: 100%;border-radius: 0;height: 40px;font-size: 1rem">提交订单
+            </button>
+
+            <!--            commit 千万不能叫submit-->
+        </form>
+
+
+    </div>
+</div>
+<!--<script type="text/html" id="selectAddressDiv">-->
+<!--    <form class="layui-form">-->
+<!--        <div class="layui-form-item">-->
+<!--            <div th:each="a:${addressList}">-->
+<!--                <div style="display: flex;align-items: center;padding: 10px 20px;border-bottom: solid lightgray 0.1px">-->
+<!--                    <input type="radio" name="address" lay-filter="address"-->
+<!--                           th:value="${a.detailAddress}+'|'+${a.receiver}+'|'+${a.phone}">-->
+<!--                    <div>-->
+<!--                        <div style="margin: 5px"><span th:text="${a.receiver}">黎杭</span> <span-->
+<!--                                th:text="${#strings.substring(a.phone,0,3)}+'****'+${#strings.substring(a.phone,7)}">18223170162</span>-->
+<!--                        </div>-->
+<!--                        <div style="margin: 5px"><span-->
+<!--                                style="background: #50d15a;color: white;padding: 1px 2px;border-radius:2px"-->
+<!--                                th:text="${a.tag}">公司</span>-->
+<!--                            <span th:text="${a.detailAddress}">重庆九龙坡区大西洋</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div style="padding-left: 50px;position: absolute;right: 20px;">-->
+<!--                        <i class="layui-icon layui-icon-edit" style="font-size: 25px"></i>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div style="padding: 10px 0">-->
+<!--                <button class="layui-btn layui-btn-normal" type="button" style="width: 100%">新建收货地址</button>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+<!--    </form>-->
+
+<!--</script>-->
+
+<script th:inline="javascript" type="text/javascript">
+    // 算购物车里边的钱
+
+    $(function () {
+        layui.use(['layer', 'form',], function () {
+            var layer = layui.layer;
+            var form = layui.form;
+
+            $("#selectAddress").click(function () {
+
+
+                var selectAddress = layer.open({
+                    type: 1,
+                    area: '80%',
+                    offset: '10px',
+                    title: '选择收货地址',
+                    content: $('#selectAddressDiv').html() //这里content是一个普通的String
+                });
+                form.render();
+
+                form.on('radio(address)', function (data) {
+                    let addressStr = data.value;
+
+                    $("#receiverAddress").val(addressStr.split('|')[0]);
+                    $("#receiverName").val(addressStr.split('|')[1]);
+                    $("#receiverPhone").val(addressStr.split('|')[2]);
+                    $("#addressTxt").text(addressStr.split('|')[0]);
+                    $("#receiverTxt").text(addressStr.split('|')[1]);
+                    $("#receiverPhone").text(addressStr.split('|')[2]);
+                    layer.close(selectAddress)
+                });
+
+            })
+            $("#commit").click(function () {
+                if (is_weixin()) {
+                    $("#isWx").val(true)
+                } else {
+                    $("#isWx").val(false)
+                }
+
+                // 提及哦订单之前，应该把订单详情也设置过来
+
+
+                $("#orderForm1").submit();
+
+            })
+
+
+        });
+
+    })
+
+</script>
+
+
+</body>
+
+</html>
