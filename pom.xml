@@ -12,11 +12,9 @@
         <module>cloud-eureka-server7001</module>
         <module>GraduationProject-provider8002</module>
         <module>mongodb-upload8081</module>
-        <module>cloud-consumer-order80</module>
         <module>cloud-provider-payment8001</module>
-        <module>cloud-api-commons</module>
         <module>cloud-consumer80</module>
-        <module>rabbitmq</module>
+        <module>rabbitmq-springboot</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->
